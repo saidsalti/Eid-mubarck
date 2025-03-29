@@ -50,10 +50,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 300px;
-            height: 300px;
-            perspective: 800px;
+            width: 320px;
+            height: 320px;
+            perspective: 1200px;
             z-index: 20;
+            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.4));
         }
         
         .cube {
@@ -61,50 +62,130 @@
             height: 100%;
             position: relative;
             transform-style: preserve-3d;
-            transform: translateZ(-150px);
-            animation: rotateCube 30s infinite linear;
+            transform: translateZ(-160px);
+            animation: floatCube 12s ease-in-out infinite;
+        }
+        
+        @keyframes floatCube {
+            0% { transform: translateZ(-160px) rotateY(0deg) rotateX(10deg); }
+            25% { transform: translateZ(-160px) rotateY(90deg) rotateX(-5deg); }
+            50% { transform: translateZ(-160px) rotateY(180deg) rotateX(10deg); }
+            75% { transform: translateZ(-160px) rotateY(270deg) rotateX(-5deg); }
+            100% { transform: translateZ(-160px) rotateY(360deg) rotateX(10deg); }
         }
         
         .cube-face {
             position: absolute;
-            width: 300px;
-            height: 300px;
+            width: 320px;
+            height: 320px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 20px;
             box-sizing: border-box;
-            background: rgba(10, 10, 50, 0.8);
-            border: 2px solid gold;
+            background: radial-gradient(circle, rgba(20, 30, 90, 0.9) 0%, rgba(10, 20, 60, 0.95) 70%);
+            border: 3px solid;
+            border-image: linear-gradient(45deg, gold, #ffd700, #ffcc00, gold) 1;
             color: white;
             font-family: 'Amiri', 'Scheherazade New', serif;
             text-align: center;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.6);
+            overflow: hidden;
         }
         
-        .front { transform: rotateY(0deg) translateZ(150px); }
-        .back { transform: rotateY(180deg) translateZ(150px); }
-        .right { transform: rotateY(90deg) translateZ(150px); }
-        .left { transform: rotateY(-90deg) translateZ(150px); }
-        .top { transform: rotateX(90deg) translateZ(150px); }
-        .bottom { transform: rotateX(-90deg) translateZ(150px); }
+        .cube-face::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('./images/islamic-pattern.png') center/cover;
+            opacity: 0.15;
+            z-index: -1;
+        }
+        
+        .cube-face::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            right: -50%;
+            bottom: -50%;
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.2) 0%, transparent 70%);
+            z-index: -1;
+            animation: rotateGlow 20s linear infinite;
+        }
+        
+        @keyframes rotateGlow {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .front { transform: rotateY(0deg) translateZ(160px); }
+        .back { transform: rotateY(180deg) translateZ(160px); }
+        .right { transform: rotateY(90deg) translateZ(160px); }
+        .left { transform: rotateY(-90deg) translateZ(160px); }
+        .top { transform: rotateX(90deg) translateZ(160px); }
+        .bottom { transform: rotateX(-90deg) translateZ(160px); }
         
         .cube-face h3 {
             margin: 0 0 15px 0;
-            font-size: 1.8rem;
-            color: gold;
-            text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+            font-size: 2.2rem;
+            background: linear-gradient(to right, #fff, gold, #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shineText 6s linear infinite;
+            text-shadow: 0 0 12px rgba(255, 215, 0, 0.6);
+            position: relative;
+        }
+        
+        @keyframes shineText {
+            0% { background-position: -500px 0; }
+            100% { background-position: 500px 0; }
         }
         
         .cube-face p {
             margin: 5px 0;
-            font-size: 1.2rem;
+            font-size: 1.3rem;
             line-height: 1.5;
+            color: #ffffff;
+            text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
+            position: relative;
+            z-index: 2;
         }
         
-        @keyframes rotateCube {
-            0% { transform: translateZ(-150px) rotateX(0deg) rotateY(0deg); }
-            100% { transform: translateZ(-150px) rotateX(360deg) rotateY(360deg); }
+        /* Corner decorations */
+        .cube-face .corner {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M0,0 L50,0 L50,10 C40,10 10,40 10,50 L0,50 Z" fill="gold"/></svg>');
+            opacity: 0.8;
+        }
+        
+        .cube-face .corner-tl { top: 0; left: 0; }
+        .cube-face .corner-tr { top: 0; right: 0; transform: rotate(90deg); }
+        .cube-face .corner-bl { bottom: 0; left: 0; transform: rotate(270deg); }
+        .cube-face .corner-br { bottom: 0; right: 0; transform: rotate(180deg); }
+        
+        /* Light rays effect */
+        .light-rays {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 500px;
+            height: 500px;
+            transform: translate(-50%, -50%);
+            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            z-index: 1;
+            mix-blend-mode: screen;
+            animation: pulse-rays 6s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulse-rays {
+            0% { opacity: 0.4; width: 450px; height: 450px; }
+            100% { opacity: 0.7; width: 550px; height: 550px; }
         }
     </style>
 </head>
@@ -114,9 +195,16 @@
         <h2>تقبل الله صيامكم وقيامكم<br>وكل عام وأنتم بخير</h2>
     </div>
     
+    <!-- Add light rays effect -->
+    <div class="light-rays"></div>
+    
     <div class="cube-container">
         <div class="cube">
             <div class="cube-face front">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>نتمنى لكم عيداً مليئاً بالسعادة والبركات</p>
                 <p>وأيامٍ مشرقة بنور الإيمان والمحبة</p>
@@ -125,6 +213,10 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face back">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>في هذا اليوم المبارك نسأل الله</p>
                 <p>أن يمن علينا وعليكم بالصحة والعافية</p>
@@ -133,6 +225,10 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face right">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>مع إشراقة عيد الفطر المبارك</p>
                 <p>نرسل أجمل التهاني والتبريكات</p>
@@ -141,6 +237,10 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face left">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>بعد شهر من الصيام والعبادة</p>
                 <p>نستقبل العيد بفرحة وسرور</p>
@@ -149,6 +249,10 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face top">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>أهديكم أجمل عبارات التهنئة</p>
                 <p>بمناسبة حلول عيد الفطر المبارك</p>
@@ -157,6 +261,10 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face bottom">
+                <div class="corner corner-tl"></div>
+                <div class="corner corner-tr"></div>
+                <div class="corner corner-bl"></div>
+                <div class="corner corner-br"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>مع إطلالة عيد الفطر المبارك</p>
                 <p>نسأل الله أن يجعل أيامنا كلها أعياد</p>
@@ -288,6 +396,23 @@
                     fireRate: random(100, 200)
                 });
             }
+
+            // Create particle system around the cube
+            for (let i = 0; i < 150; i++) {
+                particles.push({
+                    x: width/2 + random(-200, 200),
+                    y: height/2 + random(-200, 200),
+                    size: random(2, 5),
+                    speedX: random(-0.5, 0.5),
+                    speedY: random(-0.5, 0.5),
+                    hue: random(30, 60), // Gold-like colors
+                    alpha: random(100, 200),
+                    orbitRadius: random(150, 250),
+                    orbitSpeed: random(0.01, 0.03),
+                    orbitAngle: random(TWO_PI),
+                    type: 'orbit'
+                });
+            }
         }
 
         function draw() {
@@ -396,6 +521,29 @@
                     explosionSize: random(100, 200)
                 };
                 fireworks.push(firework);
+            }
+
+            // Draw orbiting particles around the cube
+            for (let i = 0; i < particles.length; i++) {
+                let p = particles[i];
+                
+                if (p.type === 'orbit') {
+                    // Update orbit position
+                    p.orbitAngle += p.orbitSpeed;
+                    p.x = width/2 + cos(p.orbitAngle) * p.orbitRadius;
+                    p.y = height/2 + sin(p.orbitAngle) * p.orbitRadius * 0.6;
+                    
+                    // Draw the particle
+                    colorMode(HSB);
+                    noStroke();
+                    fill(p.hue, 100, 100, p.alpha/255);
+                    ellipse(p.x, p.y, p.size);
+                    
+                    // Add a slight trail
+                    fill(p.hue, 100, 100, (p.alpha/255) * 0.3);
+                    ellipse(p.x - p.speedX*3, p.y - p.speedY*3, p.size*0.7);
+                    colorMode(RGB);
+                }
             }
         }
 
