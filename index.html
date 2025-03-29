@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>عيد الفطر المبارك</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
@@ -29,13 +29,14 @@
             z-index: 10;
             text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
             animation: pulse 3s infinite;
+            padding: 0 15px; /* Add padding for small screens */
         }
         h1 {
-            font-size: 3.5rem;
+            font-size: calc(2rem + 3vmin); /* Responsive font size */
             margin-bottom: 1rem;
         }
         h2 {
-            font-size: 2rem;
+            font-size: calc(1rem + 1.5vmin); /* Responsive font size */
             font-weight: normal;
             margin-bottom: 1.5rem;
             color: #f8f9fa;
@@ -50,11 +51,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 320px;
-            height: 320px;
+            width: min(320px, 90vw); /* Responsive width */
+            height: min(320px, 90vw); /* Responsive height */
             perspective: 1200px;
             z-index: 20;
-            filter: drop-shadow(0 0 25px rgba(255, 215, 0, 0.4));
+            filter: drop-shadow(0 0 35px rgba(255, 215, 0, 0.5));
         }
         
         .cube {
@@ -63,29 +64,29 @@
             position: relative;
             transform-style: preserve-3d;
             transform: translateZ(-160px);
-            animation: floatCube 12s ease-in-out infinite;
+            animation: floatCube 15s ease-in-out infinite;
         }
         
         @keyframes floatCube {
-            0% { transform: translateZ(-160px) rotateY(0deg) rotateX(10deg); }
-            25% { transform: translateZ(-160px) rotateY(90deg) rotateX(-5deg); }
-            50% { transform: translateZ(-160px) rotateY(180deg) rotateX(10deg); }
-            75% { transform: translateZ(-160px) rotateY(270deg) rotateX(-5deg); }
-            100% { transform: translateZ(-160px) rotateY(360deg) rotateX(10deg); }
+            0% { transform: translateZ(-160px) rotateY(0deg) rotateX(10deg) translateY(0px); }
+            25% { transform: translateZ(-160px) rotateY(90deg) rotateX(-5deg) translateY(-10px); }
+            50% { transform: translateZ(-160px) rotateY(180deg) rotateX(10deg) translateY(0px); }
+            75% { transform: translateZ(-160px) rotateY(270deg) rotateX(-5deg) translateY(-10px); }
+            100% { transform: translateZ(-160px) rotateY(360deg) rotateX(10deg) translateY(0px); }
         }
         
         .cube-face {
             position: absolute;
-            width: 320px;
-            height: 320px;
+            width: min(320px, 90vw); /* Match container size */
+            height: min(320px, 90vw); /* Match container size */
             display: flex;
             flex-direction: column;
             justify-content: center;
             padding: 20px;
             box-sizing: border-box;
-            background: radial-gradient(circle, rgba(20, 30, 90, 0.9) 0%, rgba(10, 20, 60, 0.95) 70%);
-            border: 3px solid;
-            border-image: linear-gradient(45deg, gold, #ffd700, #ffcc00, gold) 1;
+            background: radial-gradient(circle, rgba(30, 40, 100, 0.9) 0%, rgba(10, 20, 60, 0.95) 70%);
+            border: 5px solid;
+            border-image: linear-gradient(45deg, #ffd700, #ffcc00, #ffaa00, #ffd700) 1;
             color: white;
             font-family: 'Amiri', 'Scheherazade New', serif;
             text-align: center;
@@ -122,16 +123,16 @@
             100% { transform: rotate(360deg); }
         }
         
-        .front { transform: rotateY(0deg) translateZ(160px); }
-        .back { transform: rotateY(180deg) translateZ(160px); }
-        .right { transform: rotateY(90deg) translateZ(160px); }
-        .left { transform: rotateY(-90deg) translateZ(160px); }
-        .top { transform: rotateX(90deg) translateZ(160px); }
-        .bottom { transform: rotateX(-90deg) translateZ(160px); }
+        .front { transform: rotateY(0deg) translateZ(min(160px, 45vw)); }
+        .back { transform: rotateY(180deg) translateZ(min(160px, 45vw)); }
+        .right { transform: rotateY(90deg) translateZ(min(160px, 45vw)); }
+        .left { transform: rotateY(-90deg) translateZ(min(160px, 45vw)); }
+        .top { transform: rotateX(90deg) translateZ(min(160px, 45vw)); }
+        .bottom { transform: rotateX(-90deg) translateZ(min(160px, 45vw)); }
         
         .cube-face h3 {
             margin: 0 0 15px 0;
-            font-size: 2.2rem;
+            font-size: calc(1.5rem + 1vmin); /* Responsive font size */
             background: linear-gradient(to right, #fff, gold, #fff);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -147,7 +148,7 @@
         
         .cube-face p {
             margin: 5px 0;
-            font-size: 1.3rem;
+            font-size: calc(0.9rem + 0.5vmin); /* Responsive font size */
             line-height: 1.5;
             color: #ffffff;
             text-shadow: 0 0 8px rgba(0, 0, 0, 0.7);
@@ -158,10 +159,11 @@
         /* Corner decorations */
         .cube-face .corner {
             position: absolute;
-            width: 50px;
-            height: 50px;
+            width: min(50px, 15vw);
+            height: min(50px, 15vw);
             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 50 50"><path d="M0,0 L50,0 L50,10 C40,10 10,40 10,50 L0,50 Z" fill="gold"/></svg>');
             opacity: 0.8;
+            filter: drop-shadow(0 0 5px gold);
         }
         
         .cube-face .corner-tl { top: 0; left: 0; }
@@ -177,7 +179,7 @@
             width: 500px;
             height: 500px;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(255, 215, 0, 0.3) 0%, transparent 70%);
+            background: radial-gradient(ellipse, rgba(255, 215, 0, 0.4) 0%, transparent 70%);
             z-index: 1;
             mix-blend-mode: screen;
             animation: pulse-rays 6s ease-in-out infinite alternate;
@@ -186,6 +188,104 @@
         @keyframes pulse-rays {
             0% { opacity: 0.4; width: 450px; height: 450px; }
             100% { opacity: 0.7; width: 550px; height: 550px; }
+        }
+        
+        /* Islamic pattern frame */
+        .islamic-frame {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            right: 10px;
+            bottom: 10px;
+            border: 2px solid rgba(255, 215, 0, 0.6);
+            z-index: 2;
+            pointer-events: none;
+        }
+        
+        .islamic-frame::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: -8px;
+            bottom: -8px;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            z-index: 1;
+        }
+        
+        /* Arabesque decorations */
+        .arabesque {
+            position: absolute;
+            width: min(30px, 10vw);
+            height: min(30px, 10vw);
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.7;
+        }
+        
+        .arabesque-1 {
+            top: 50px;
+            left: 20px;
+            transform: rotate(45deg);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M15,0 C20,10 30,15 15,30 C0,15 10,10 15,0" stroke="gold" fill="none" stroke-width="1" /></svg>');
+        }
+        
+        .arabesque-2 {
+            top: 50px;
+            right: 20px;
+            transform: rotate(-45deg);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M15,0 C20,10 30,15 15,30 C0,15 10,10 15,0" stroke="gold" fill="none" stroke-width="1" /></svg>');
+        }
+        
+        .arabesque-3 {
+            bottom: 50px;
+            left: 20px;
+            transform: rotate(-45deg);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M15,0 C20,10 30,15 15,30 C0,15 10,10 15,0" stroke="gold" fill="none" stroke-width="1" /></svg>');
+        }
+        
+        .arabesque-4 {
+            bottom: 50px;
+            right: 20px;
+            transform: rotate(45deg);
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30"><path d="M15,0 C20,10 30,15 15,30 C0,15 10,10 15,0" stroke="gold" fill="none" stroke-width="1" /></svg>');
+        }
+        
+        /* Floating mosque silhouettes */
+        .mosque-silhouette {
+            position: absolute;
+            bottom: 5%;
+            width: 100%;
+            height: 150px;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 200"><path d="M0,200 L50,200 L60,180 L70,200 L80,180 L90,200 L100,180 L110,200 L120,180 L130,200 L140,150 C140,150 160,130 180,150 C200,170 220,130 240,150 C260,170 250,120 280,130 L300,110 L310,130 L320,100 L340,130 L350,100 L360,130 L380,90 C380,90 400,70 410,90 L420,70 L430,90 L500,70 C500,70 520,60 540,70 L550,60 L560,80 L570,60 L580,80 L590,60 L600,80 L610,60 L620,80 L700,60 L720,100 L740,60 L760,100 L800,60 L830,100 L860,60 L900,100 L930,60 L950,100 L1000,80 L1000,200 Z" fill="rgba(10,20,60,0.8)" /></svg>');
+            background-size: cover;
+            background-position: bottom center;
+            z-index: 5;
+            opacity: 0.7;
+        }
+        
+        /* Media queries for different screen sizes */
+        @media (max-width: 768px) {
+            .mosque-silhouette {
+                height: 100px; /* Smaller on mobile */
+            }
+            
+            .light-rays {
+                width: 350px;
+                height: 350px;
+            }
+            
+            @keyframes pulse-rays {
+                0% { opacity: 0.4; width: 300px; height: 300px; }
+                100% { opacity: 0.7; width: 350px; height: 350px; }
+            }
+        }
+        
+        /* Touch-friendly interactions */
+        @media (hover: none) {
+            .cube-face {
+                border-width: 4px; /* Slightly thinner borders on touch devices */
+            }
         }
     </style>
 </head>
@@ -198,13 +298,21 @@
     <!-- Add light rays effect -->
     <div class="light-rays"></div>
     
+    <!-- Add mosque silhouette -->
+    <div class="mosque-silhouette"></div>
+    
     <div class="cube-container">
         <div class="cube">
             <div class="cube-face front">
+                <div class="islamic-frame"></div>
                 <div class="corner corner-tl"></div>
                 <div class="corner corner-tr"></div>
                 <div class="corner corner-bl"></div>
                 <div class="corner corner-br"></div>
+                <div class="arabesque arabesque-1"></div>
+                <div class="arabesque arabesque-2"></div>
+                <div class="arabesque arabesque-3"></div>
+                <div class="arabesque arabesque-4"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>نتمنى لكم عيداً مليئاً بالسعادة والبركات</p>
                 <p>وأيامٍ مشرقة بنور الإيمان والمحبة</p>
@@ -213,10 +321,15 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face back">
+                <div class="islamic-frame"></div>
                 <div class="corner corner-tl"></div>
                 <div class="corner corner-tr"></div>
                 <div class="corner corner-bl"></div>
                 <div class="corner corner-br"></div>
+                <div class="arabesque arabesque-1"></div>
+                <div class="arabesque arabesque-2"></div>
+                <div class="arabesque arabesque-3"></div>
+                <div class="arabesque arabesque-4"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>في هذا اليوم المبارك نسأل الله</p>
                 <p>أن يمن علينا وعليكم بالصحة والعافية</p>
@@ -225,10 +338,15 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face right">
+                <div class="islamic-frame"></div>
                 <div class="corner corner-tl"></div>
                 <div class="corner corner-tr"></div>
                 <div class="corner corner-bl"></div>
                 <div class="corner corner-br"></div>
+                <div class="arabesque arabesque-1"></div>
+                <div class="arabesque arabesque-2"></div>
+                <div class="arabesque arabesque-3"></div>
+                <div class="arabesque arabesque-4"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>مع إشراقة عيد الفطر المبارك</p>
                 <p>نرسل أجمل التهاني والتبريكات</p>
@@ -237,10 +355,15 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face left">
+                <div class="islamic-frame"></div>
                 <div class="corner corner-tl"></div>
                 <div class="corner corner-tr"></div>
                 <div class="corner corner-bl"></div>
                 <div class="corner corner-br"></div>
+                <div class="arabesque arabesque-1"></div>
+                <div class="arabesque arabesque-2"></div>
+                <div class="arabesque arabesque-3"></div>
+                <div class="arabesque arabesque-4"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>بعد شهر من الصيام والعبادة</p>
                 <p>نستقبل العيد بفرحة وسرور</p>
@@ -249,10 +372,15 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face top">
+                <div class="islamic-frame"></div>
                 <div class="corner corner-tl"></div>
                 <div class="corner corner-tr"></div>
                 <div class="corner corner-bl"></div>
                 <div class="corner corner-br"></div>
+                <div class="arabesque arabesque-1"></div>
+                <div class="arabesque arabesque-2"></div>
+                <div class="arabesque arabesque-3"></div>
+                <div class="arabesque arabesque-4"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>أهديكم أجمل عبارات التهنئة</p>
                 <p>بمناسبة حلول عيد الفطر المبارك</p>
@@ -261,10 +389,15 @@
                 <p>عيد فطر مبارك</p>
             </div>
             <div class="cube-face bottom">
+                <div class="islamic-frame"></div>
                 <div class="corner corner-tl"></div>
                 <div class="corner corner-tr"></div>
                 <div class="corner corner-bl"></div>
                 <div class="corner corner-br"></div>
+                <div class="arabesque arabesque-1"></div>
+                <div class="arabesque arabesque-2"></div>
+                <div class="arabesque arabesque-3"></div>
+                <div class="arabesque arabesque-4"></div>
                 <h3>سعيد بن يعقوب الصلتي</h3>
                 <p>مع إطلالة عيد الفطر المبارك</p>
                 <p>نسأل الله أن يجعل أيامنا كلها أعياد</p>
@@ -337,14 +470,26 @@
                 console.warn('Some images failed to load. Using fallback styles.');
             }
             
-            for (let i = 0; i < 100; i++) {
+            // Enhanced twinkling stars
+            for (let i = 0; i < 120; i++) {
                 stars.push({
                     x: random(width),
                     y: random(height),
-                    size: random(1, 3),
-                    twinkleSpeed: random(0.02, 0.05)
+                    size: random(1, 4),
+                    twinkleSpeed: random(0.03, 0.08), // Faster twinkling
+                    brightness: random(150, 255), // Brighter stars
+                    twinkleAmount: random(50, 100) // More pronounced twinkling
                 });
             }
+            
+            // Create only ONE moon - make it prominent
+            moons = [{
+                x: width * 0.85, // Position it on the right side
+                y: height * 0.2, // Position it high in the sky
+                size: random(60, 80), // Make it larger
+                rotation: random(TWO_PI),
+                rotationSpeed: 0.002 // Slow, subtle rotation
+            }];
             
             for (let i = 0; i < 8; i++) {
                 lanterns.push({
@@ -355,16 +500,6 @@
                     speedX: random(-0.2, 0.2),
                     angle: 0,
                     angleSpeed: random(-0.01, 0.01)
-                });
-            }
-            
-            for (let i = 0; i < 3; i++) {
-                moons.push({
-                    x: random(width),
-                    y: random(height * 0.3),
-                    size: random(40, 80),
-                    rotation: random(TWO_PI),
-                    rotationSpeed: random(-0.01, 0.01)
                 });
             }
             
@@ -384,7 +519,7 @@
             // Create surrounding fireworks points (in a circle around the center)
             let centerX = windowWidth / 2;
             let centerY = windowHeight / 2;
-            let radius = 200; // Distance from center
+            let radius = min(200, windowWidth * 0.25); // Responsive radius
             
             for (let angle = 0; angle < TWO_PI; angle += PI/8) {
                 let x = centerX + cos(angle) * radius;
@@ -397,8 +532,13 @@
                 });
             }
 
+            // Adjust number of particles for mobile
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            const orbitParticleCount = isMobile ? 75 : 150;
+            const patternCount = isMobile ? 6 : 12;
+
             // Create particle system around the cube
-            for (let i = 0; i < 150; i++) {
+            for (let i = 0; i < orbitParticleCount; i++) {
                 particles.push({
                     x: width/2 + random(-200, 200),
                     y: height/2 + random(-200, 200),
@@ -412,6 +552,61 @@
                     orbitAngle: random(TWO_PI),
                     type: 'orbit'
                 });
+            }
+
+            // Create special moon phase particles
+            for (let i = 0; i < 15; i++) {
+                particles.push({
+                    x: random(width),
+                    y: random(height),
+                    size: random(25, 40),
+                    phase: random(TWO_PI),
+                    phaseSpeed: random(0.005, 0.02),
+                    alpha: random(100, 180),
+                    type: 'moonPhase'
+                });
+            }
+            
+            // Create particles that form Islamic pattern shapes
+            let patterns = [
+                // Star pattern
+                (angle) => { return 1 + 0.4 * cos(angle * 8); },
+                // Crescent shape
+                (angle) => { return 1 + 0.5 * sin(angle) * cos(angle); },
+                // Hexagon
+                (angle) => { return 1 + 0.2 * cos(angle * 6); }
+            ];
+            
+            for (let i = 0; i < patternCount; i++) {
+                let patternType = floor(random(patterns.length));
+                let hue = random([38, 45, 50]); // Gold-ish hues
+                let centroidX = random(width);
+                let centroidY = random(height);
+                
+                for (let angle = 0; angle < TWO_PI; angle += TWO_PI/30) {
+                    let r = random(60, 100) * patterns[patternType](angle);
+                    let x = centroidX + cos(angle) * r;
+                    let y = centroidY + sin(angle) * r;
+                    
+                    if (x > 0 && x < width && y > 0 && y < height) {
+                        particles.push({
+                            x: x,
+                            y: y,
+                            origX: x,
+                            origY: y,
+                            size: random(2, 4),
+                            angle: angle,
+                            radius: r,
+                            radiusVariation: random(5, 15),
+                            radiusSpeed: random(0.01, 0.05),
+                            centroidX: centroidX,
+                            centroidY: centroidY,
+                            hue: hue,
+                            alpha: random(150, 220),
+                            type: 'islamicPattern'
+                        });
+                    }
+                }
             }
         }
 
@@ -435,28 +630,43 @@
                 }
             }
             
+            // Enhanced star twinkling effect
             for (let star of stars) {
-                let brightness = 150 + 50 * sin(frameCount * star.twinkleSpeed);
+                let brightness = star.brightness + star.twinkleAmount * sin(frameCount * star.twinkleSpeed);
                 fill(brightness);
                 noStroke();
+                
+                // Add a subtle glow effect
+                if (brightness > 220) {
+                    fill(brightness, brightness, 200, 50);
+                    ellipse(star.x, star.y, star.size * 2.5);
+                    fill(brightness);
+                }
+                
                 ellipse(star.x, star.y, star.size);
             }
             
-            // Safe drawing of crescent moons - check if image is available
+            // Draw the single moon with a more prominent glow
             for (let moon of moons) {
                 push();
                 translate(moon.x, moon.y);
                 rotate(moon.rotation);
                 
+                // Add a subtle glow around the moon
+                for (let i = 3; i > 0; i--) {
+                    fill(255, 255, 220, 20);
+                    ellipse(0, 0, moon.size * (1 + i * 0.4));
+                }
+                
                 if (crescentImg && !imageLoadError) {
                     imageMode(CENTER);
-                    tint(255, 230);
+                    tint(255, 255);
                     image(crescentImg, 0, 0, moon.size, moon.size);
                 } else {
                     // Fallback crescent drawing if image isn't available
                     noStroke();
-                    fill(255, 255, 200, 230);
-                    ellipse(0, 0, moon.size, moon.size);
+                    fill(255, 255, 200, 250);
+                    ellipse(0, 0, moon.size);
                     fill(10, 25, 49);
                     ellipse(moon.size * 0.2, 0, moon.size * 0.8, moon.size * 0.8);
                 }
@@ -464,39 +674,6 @@
                 pop();
                 
                 moon.rotation += moon.rotationSpeed;
-            }
-            
-            // Safe drawing of lanterns - check if image is available
-            for (let lantern of lanterns) {
-                push();
-                translate(lantern.x, lantern.y);
-                rotate(lantern.angle);
-                
-                if (lanternImg && !imageLoadError) {
-                    imageMode(CENTER);
-                    tint(255, 240);
-                    image(lanternImg, 0, 0, lantern.size, lantern.size * 1.5);
-                } else {
-                    // Fallback lantern drawing if image isn't available
-                    noStroke();
-                    fill(255, 200, 100, 240);
-                    ellipse(0, 0, lantern.size, lantern.size * 1.2);
-                    fill(255, 100, 50, 240);
-                    ellipse(0, 0, lantern.size * 0.6, lantern.size * 0.8);
-                }
-                
-                pop();
-                
-                lantern.y += lantern.speedY;
-                lantern.x += lantern.speedX;
-                lantern.angle += lantern.angleSpeed;
-                
-                if (lantern.y < 0 || lantern.y > height) {
-                    lantern.speedY *= -1;
-                }
-                if (lantern.x < 0 || lantern.x > width) {
-                    lantern.speedX *= -1;
-                }
             }
             
             updateFireworks();
@@ -507,7 +684,10 @@
                 drawGlowParticles();
             }
             
-            if (random(1) < 0.05) {
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+            
+            // Only create new fireworks occasionally on mobile to avoid performance issues
+            if (random(1) < (isMobile ? 0.02 : 0.05)) {
                 let x = random(width);
                 let y = height;
                 let hue = random(360);
@@ -542,6 +722,46 @@
                     // Add a slight trail
                     fill(p.hue, 100, 100, (p.alpha/255) * 0.3);
                     ellipse(p.x - p.speedX*3, p.y - p.speedY*3, p.size*0.7);
+                    colorMode(RGB);
+                }
+                
+                if (p.type === 'moonPhase') {
+                    p.phase += p.phaseSpeed;
+                    
+                    // Draw moon phase
+                    push();
+                    translate(p.x, p.y);
+                    
+                    // Full circle for the moon
+                    fill(255, 253, 230, p.alpha);
+                    noStroke();
+                    ellipse(0, 0, p.size);
+                    
+                    // Shadow part that creates the phase
+                    let shadowOffset = cos(p.phase) * p.size * 0.6;
+                    fill(10, 20, 60, p.alpha);
+                    ellipse(shadowOffset, 0, p.size);
+                    
+                    pop();
+                    
+                    // Move moon slowly across the screen
+                    p.x += 0.2;
+                    if (p.x > width + p.size) {
+                        p.x = -p.size;
+                        p.y = random(height);
+                    }
+                }
+                
+                if (p.type === 'islamicPattern') {
+                    let radiusVariation = sin(frameCount * p.radiusSpeed) * p.radiusVariation;
+                    let newRadius = p.radius + radiusVariation;
+                    p.x = p.centroidX + cos(p.angle) * newRadius;
+                    p.y = p.centroidY + sin(p.angle) * newRadius;
+                    
+                    colorMode(HSB);
+                    fill(p.hue, 80, 100, p.alpha / 255);
+                    noStroke();
+                    ellipse(p.x, p.y, p.size);
                     colorMode(RGB);
                 }
             }
@@ -778,6 +998,12 @@
 
         function windowResized() {
             resizeCanvas(windowWidth, windowHeight);
+            
+            // Reposition moon when window is resized
+            if (moons.length > 0) {
+                moons[0].x = width * 0.85;
+                moons[0].y = height * 0.2;
+            }
         }
         
         function mousePressed() {
@@ -796,6 +1022,13 @@
                 fireworks.push(firework);
             }
             return false;
+        }
+        
+        // Add touch events for mobile
+        function touchStarted() {
+            // Same as mousePressed for mobile devices
+            mousePressed();
+            return false; // Prevent default
         }
     </script>
 </body>
