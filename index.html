@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عيد الفطر المبارك</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.7.0/addons/p5.sound.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            font-family: 'Amiri', 'Scheherazade New', serif;
+            background-color: #0a1931;
+        }
+        canvas {
+            display: block;
+        }
+        @import url('https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap');
+        .message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            width: 100%;
+            color: #ffd700;
+            z-index: 10;
+            text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+            animation: pulse 3s infinite;
+        }
+        h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: normal;
+            margin-bottom: 1.5rem;
+            color: #f8f9fa;
+        }
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); }
+            50% { transform: translate(-50%, -50%) scale(1.05); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+        .cube-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            perspective: 800px;
+            z-index: 20;
+        }
+        
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: translateZ(-150px);
+            animation: rotateCube 30s infinite linear;
+        }
+        
+        .cube-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 20px;
+            box-sizing: border-box;
+            background: rgba(10, 10, 50, 0.8);
+            border: 2px solid gold;
+            color: white;
+            font-family: 'Amiri', 'Scheherazade New', serif;
+            text-align: center;
+            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .front { transform: rotateY(0deg) translateZ(150px); }
+        .back { transform: rotateY(180deg) translateZ(150px); }
+        .right { transform: rotateY(90deg) translateZ(150px); }
+        .left { transform: rotateY(-90deg) translateZ(150px); }
+        .top { transform: rotateX(90deg) translateZ(150px); }
+        .bottom { transform: rotateX(-90deg) translateZ(150px); }
+        
+        .cube-face h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.8rem;
+            color: gold;
+            text-shadow: 0 0 5px rgba(255, 215, 0, 0.8);
+        }
+        
+        .cube-face p {
+            margin: 5px 0;
+            font-size: 1.2rem;
+            line-height: 1.5;
+        }
+        
+        @keyframes rotateCube {
+            0% { transform: translateZ(-150px) rotateX(0deg) rotateY(0deg); }
+            100% { transform: translateZ(-150px) rotateX(360deg) rotateY(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="message">
+        <h1>عيد فطر مبارك</h1>
+        <h2>تقبل الله صيامكم وقيامكم<br>وكل عام وأنتم بخير</h2>
+    </div>
+    
+    <div class="cube-container">
+        <div class="cube">
+            <div class="cube-face front">
+                <h3>سعيد بن يعقوب الصلتي</h3>
+                <p>نتمنى لكم عيداً مليئاً بالسعادة والبركات</p>
+                <p>وأيامٍ مشرقة بنور الإيمان والمحبة</p>
+                <p>وكل عام وأنتم بألف خير</p>
+                <p>تقبل الله منا ومنكم صالح الأعمال</p>
+                <p>عيد فطر مبارك</p>
+            </div>
+            <div class="cube-face back">
+                <h3>سعيد بن يعقوب الصلتي</h3>
+                <p>في هذا اليوم المبارك نسأل الله</p>
+                <p>أن يمن علينا وعليكم بالصحة والعافية</p>
+                <p>وأن يجعل أيامنا كلها سعادة وفرح</p>
+                <p>وأن يتقبل منا الصيام والقيام</p>
+                <p>عيد فطر مبارك</p>
+            </div>
+            <div class="cube-face right">
+                <h3>سعيد بن يعقوب الصلتي</h3>
+                <p>مع إشراقة عيد الفطر المبارك</p>
+                <p>نرسل أجمل التهاني والتبريكات</p>
+                <p>متمنين لكم عيداً سعيداً</p>
+                <p>وحياة مليئة بالخير والبركة</p>
+                <p>عيد فطر مبارك</p>
+            </div>
+            <div class="cube-face left">
+                <h3>سعيد بن يعقوب الصلتي</h3>
+                <p>بعد شهر من الصيام والعبادة</p>
+                <p>نستقبل العيد بفرحة وسرور</p>
+                <p>ونسأل الله أن يتقبل منا ومنكم</p>
+                <p>ويجمعنا دائماً على الخير والمحبة</p>
+                <p>عيد فطر مبارك</p>
+            </div>
+            <div class="cube-face top">
+                <h3>سعيد بن يعقوب الصلتي</h3>
+                <p>أهديكم أجمل عبارات التهنئة</p>
+                <p>بمناسبة حلول عيد الفطر المبارك</p>
+                <p>وأسأل الله أن يديم عليكم فرحة العيد</p>
+                <p>وأن يبارك لكم في أيامكم القادمة</p>
+                <p>عيد فطر مبارك</p>
+            </div>
+            <div class="cube-face bottom">
+                <h3>سعيد بن يعقوب الصلتي</h3>
+                <p>مع إطلالة عيد الفطر المبارك</p>
+                <p>نسأل الله أن يجعل أيامنا كلها أعياد</p>
+                <p>وأن يمن علينا بالأمن والسلام</p>
+                <p>وأن يجمعنا دائماً على طاعته</p>
+                <p>عيد فطر مبارك</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let stars = [];
+        let lanterns = [];
+        let moons = [];
+        let fireworks = [];
+        let particles = [];
+        let crescentImg;
+        let lanternImg;
+        let confetti = [];
+        let backgroundImg;
+        let surroundingFireworks = []; // For fireworks surrounding the cube
+        let imageLoadError = false;
+
+        function preload() {
+            // Add error handling for image loading
+            try {
+                crescentImg = loadImage('https://i.ibb.co/QbqStvq/crescent.png', 
+                    () => console.log('Crescent loaded successfully'), 
+                    () => { console.error('Failed to load crescent'); imageLoadError = true; }
+                );
+                
+                lanternImg = loadImage('https://i.ibb.co/0MmB3HF/lantern.png', 
+                    () => console.log('Lantern loaded successfully'), 
+                    () => { console.error('Failed to load lantern'); imageLoadError = true; }
+                );
+                
+                // Try with relative path first
+                try {
+                    backgroundImg = loadImage('./images/masjed.webp', 
+                        () => console.log('Background loaded successfully'), 
+                        () => {
+                            console.error('Failed to load background with relative path');
+                            // Try with absolute path as fallback
+                            try {
+                                backgroundImg = loadImage('c:/Users/firis/Desktop/temps/Eid mubarck/images/masjed.webp',
+                                    () => console.log('Background loaded with absolute path'),
+                                    () => { console.error('Failed to load background with absolute path'); imageLoadError = true; }
+                                );
+                            } catch (e) {
+                                console.error('Error loading background with absolute path:', e);
+                                imageLoadError = true;
+                            }
+                        }
+                    );
+                } catch (e) {
+                    console.error('Error loading background with relative path:', e);
+                    imageLoadError = true;
+                }
+            } catch (e) {
+                console.error('Error in preload:', e);
+                imageLoadError = true;
+            }
+        }
+
+        function setup() {
+            createCanvas(windowWidth, windowHeight);
+            
+            // If there was an image loading error, show a message
+            if (imageLoadError) {
+                console.warn('Some images failed to load. Using fallback styles.');
+            }
+            
+            for (let i = 0; i < 100; i++) {
+                stars.push({
+                    x: random(width),
+                    y: random(height),
+                    size: random(1, 3),
+                    twinkleSpeed: random(0.02, 0.05)
+                });
+            }
+            
+            for (let i = 0; i < 8; i++) {
+                lanterns.push({
+                    x: random(width),
+                    y: random(height * 0.3, height * 0.8),
+                    size: random(30, 70),
+                    speedY: random(-0.3, 0.3),
+                    speedX: random(-0.2, 0.2),
+                    angle: 0,
+                    angleSpeed: random(-0.01, 0.01)
+                });
+            }
+            
+            for (let i = 0; i < 3; i++) {
+                moons.push({
+                    x: random(width),
+                    y: random(height * 0.3),
+                    size: random(40, 80),
+                    rotation: random(TWO_PI),
+                    rotationSpeed: random(-0.01, 0.01)
+                });
+            }
+            
+            for (let i = 0; i < 100; i++) {
+                confetti.push({
+                    x: random(width),
+                    y: random(-100, -10),
+                    size: random(5, 10),
+                    color: color(random(100, 255), random(100, 255), random(100, 255)),
+                    speedY: random(1, 3),
+                    speedX: random(-1, 1),
+                    rotation: random(TWO_PI),
+                    rotSpeed: random(-0.1, 0.1)
+                });
+            }
+            
+            // Create surrounding fireworks points (in a circle around the center)
+            let centerX = windowWidth / 2;
+            let centerY = windowHeight / 2;
+            let radius = 200; // Distance from center
+            
+            for (let angle = 0; angle < TWO_PI; angle += PI/8) {
+                let x = centerX + cos(angle) * radius;
+                let y = centerY + sin(angle) * radius;
+                surroundingFireworks.push({
+                    x: x,
+                    y: y,
+                    lastFired: random(0, 100),
+                    fireRate: random(100, 200)
+                });
+            }
+        }
+
+        function draw() {
+            // Modify background rendering to handle missing image
+            if (backgroundImg && !imageLoadError) {
+                background(10, 25, 49, 100);
+                imageMode(CORNER);
+                tint(255, 150);
+                image(backgroundImg, 0, 0, width, height);
+                noTint();
+            } else {
+                // Fallback to gradient background if image failed to load
+                let c1 = color(10, 25, 49);
+                let c2 = color(20, 40, 80);
+                for (let y = 0; y < height; y++) {
+                    let inter = map(y, 0, height, 0, 1);
+                    let c = lerpColor(c1, c2, inter);
+                    stroke(c);
+                    line(0, y, width, y);
+                }
+            }
+            
+            for (let star of stars) {
+                let brightness = 150 + 50 * sin(frameCount * star.twinkleSpeed);
+                fill(brightness);
+                noStroke();
+                ellipse(star.x, star.y, star.size);
+            }
+            
+            // Safe drawing of crescent moons - check if image is available
+            for (let moon of moons) {
+                push();
+                translate(moon.x, moon.y);
+                rotate(moon.rotation);
+                
+                if (crescentImg && !imageLoadError) {
+                    imageMode(CENTER);
+                    tint(255, 230);
+                    image(crescentImg, 0, 0, moon.size, moon.size);
+                } else {
+                    // Fallback crescent drawing if image isn't available
+                    noStroke();
+                    fill(255, 255, 200, 230);
+                    ellipse(0, 0, moon.size, moon.size);
+                    fill(10, 25, 49);
+                    ellipse(moon.size * 0.2, 0, moon.size * 0.8, moon.size * 0.8);
+                }
+                
+                pop();
+                
+                moon.rotation += moon.rotationSpeed;
+            }
+            
+            // Safe drawing of lanterns - check if image is available
+            for (let lantern of lanterns) {
+                push();
+                translate(lantern.x, lantern.y);
+                rotate(lantern.angle);
+                
+                if (lanternImg && !imageLoadError) {
+                    imageMode(CENTER);
+                    tint(255, 240);
+                    image(lanternImg, 0, 0, lantern.size, lantern.size * 1.5);
+                } else {
+                    // Fallback lantern drawing if image isn't available
+                    noStroke();
+                    fill(255, 200, 100, 240);
+                    ellipse(0, 0, lantern.size, lantern.size * 1.2);
+                    fill(255, 100, 50, 240);
+                    ellipse(0, 0, lantern.size * 0.6, lantern.size * 0.8);
+                }
+                
+                pop();
+                
+                lantern.y += lantern.speedY;
+                lantern.x += lantern.speedX;
+                lantern.angle += lantern.angleSpeed;
+                
+                if (lantern.y < 0 || lantern.y > height) {
+                    lantern.speedY *= -1;
+                }
+                if (lantern.x < 0 || lantern.x > width) {
+                    lantern.speedX *= -1;
+                }
+            }
+            
+            updateFireworks();
+            updateConfetti();
+            updateSurroundingFireworks();
+            
+            if (frameCount % 5 === 0) {
+                drawGlowParticles();
+            }
+            
+            if (random(1) < 0.05) {
+                let x = random(width);
+                let y = height;
+                let hue = random(360);
+                let firework = {
+                    x: x,
+                    y: y,
+                    targetY: random(height * 0.1, height * 0.5),
+                    speedY: random(-11, -15),
+                    hue: hue,
+                    size: random(3, 5),
+                    explosionSize: random(100, 200)
+                };
+                fireworks.push(firework);
+            }
+        }
+
+        function updateFireworks() {
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                let firework = fireworks[i];
+                firework.y += firework.speedY;
+                firework.speedY += 0.2;
+                
+                colorMode(HSB);
+                stroke(firework.hue, 100, 100);
+                strokeWeight(4);
+                point(firework.x, firework.y);
+                colorMode(RGB);
+                
+                if (firework.speedY >= 0) {
+                    if (typeof AudioContext !== "undefined") {
+                        try {
+                            let audio = new AudioContext();
+                            let osc = audio.createOscillator();
+                            let gain = audio.createGain();
+                            osc.connect(gain);
+                            gain.connect(audio.destination);
+                            osc.frequency.value = random(200, 500);
+                            gain.gain.value = 0.1;
+                            osc.start();
+                            gain.gain.exponentialRampToValueAtTime(0.00001, audio.currentTime + 0.5);
+                            osc.stop(audio.currentTime + 0.5);
+                        } catch(e) {
+                            console.log("Audio not supported");
+                        }
+                    }
+                    
+                    let explosionType = floor(random(3));
+                    let explosionParticleCount = firework.explosionSize || 100;
+                    
+                    for (let j = 0; j < explosionParticleCount; j++) {
+                        let angle, speed;
+                        
+                        if (explosionType === 0) {
+                            angle = random(TWO_PI);
+                            speed = random(1, 5);
+                        } else if (explosionType === 1) {
+                            angle = random(TWO_PI);
+                            let heartShape = 1 - sin(angle) * cos(angle) / 1.5;
+                            speed = random(1, 4) * heartShape;
+                        } else {
+                            angle = random(TWO_PI);
+                            let points = 5;
+                            let starShape = 1 + cos(angle * points) * 0.5;
+                            speed = random(1, 4) * starShape;
+                        }
+                        
+                        let particle = {
+                            x: firework.x,
+                            y: firework.y,
+                            vx: cos(angle) * speed,
+                            vy: sin(angle) * speed,
+                            hue: firework.hue,
+                            alpha: 255,
+                            size: random(2, 5),
+                            gravity: 0.1,
+                            trail: []
+                        };
+                        particles.push(particle);
+                    }
+                    
+                    fireworks.splice(i, 1);
+                }
+            }
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                let p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += p.gravity;
+                p.alpha -= 2;
+                
+                if (frameCount % 2 === 0) {
+                    p.trail.push({x: p.x, y: p.y, alpha: p.alpha});
+                }
+                if (p.trail.length > 5) p.trail.shift();
+                
+                for (let j = 0; j < p.trail.length; j++) {
+                    let t = p.trail[j];
+                    let trailAlpha = t.alpha * 0.3;
+                    colorMode(HSB);
+                    noStroke();
+                    fill(p.hue, 100, 100, trailAlpha / 255);
+                    ellipse(t.x, t.y, p.size * 0.7);
+                }
+                
+                if (p.alpha > 0) {
+                    colorMode(HSB);
+                    noStroke();
+                    fill(p.hue, 100, 100, p.alpha / 255);
+                    ellipse(p.x, p.y, p.size);
+                    colorMode(RGB);
+                } else {
+                    particles.splice(i, 1);
+                }
+            }
+        }
+        
+        function updateConfetti() {
+            for (let i = 0; i < confetti.length; i++) {
+                let c = confetti[i];
+                
+                c.y += c.speedY;
+                c.x += c.speedX;
+                c.rotation += c.rotSpeed;
+                
+                push();
+                translate(c.x, c.y);
+                rotate(c.rotation);
+                fill(c.color);
+                noStroke();
+                rect(0, 0, c.size, c.size / 2);
+                pop();
+                
+                if (c.y > height) {
+                    c.y = random(-100, -10);
+                    c.x = random(width);
+                }
+            }
+        }
+
+        function drawGlowParticles() {
+            for (let i = 0; i < 3; i++) {
+                let x = random(width);
+                let y = random(height);
+                
+                noStroke();
+                for (let j = 15; j > 0; j--) {
+                    let alpha = map(j, 0, 15, 0, 50);
+                    fill(255, 223, 0, alpha);
+                    ellipse(x, y, j * 2);
+                }
+            }
+        }
+
+        function updateSurroundingFireworks() {
+            for (let point of surroundingFireworks) {
+                point.lastFired++;
+                
+                if (point.lastFired > point.fireRate) {
+                    point.lastFired = 0;
+                    point.fireRate = random(100, 300);
+                    
+                    let hue = random(360);
+                    let firework = {
+                        x: point.x,
+                        y: point.y,
+                        vx: random(-1, 1) * 2,
+                        vy: random(-3, -1),
+                        hue: hue,
+                        size: random(2, 4),
+                        explosionSize: random(50, 100),
+                        gravity: 0.05,
+                        alpha: 255,
+                        trail: [],
+                        isPeripheral: true
+                    };
+                    
+                    particles.push(firework);
+                }
+            }
+            
+            for (let i = particles.length - 1; i >= 0; i--) {
+                let p = particles[i];
+                
+                if (p.isPeripheral) {
+                    p.x += p.vx;
+                    p.y += p.vy;
+                    p.vy += p.gravity;
+                    p.alpha -= 1;
+                    
+                    if (frameCount % 2 === 0) {
+                        p.trail.push({x: p.x, y: p.y, alpha: p.alpha});
+                    }
+                    if (p.trail.length > 5) p.trail.shift();
+                    
+                    for (let j = 0; j < p.trail.length; j++) {
+                        let t = p.trail[j];
+                        let trailAlpha = t.alpha * 0.3;
+                        colorMode(HSB);
+                        noStroke();
+                        fill(p.hue, 100, 100, trailAlpha / 255);
+                        ellipse(t.x, t.y, p.size * 0.7);
+                    }
+                    
+                    colorMode(HSB);
+                    noStroke();
+                    fill(p.hue, 100, 100, p.alpha / 255);
+                    ellipse(p.x, p.y, p.size);
+                    colorMode(RGB);
+                    
+                    if (p.vy > 0 || random(1) < 0.03) {
+                        createPeripheralExplosion(p.x, p.y, p.hue);
+                        particles.splice(i, 1);
+                    }
+                    
+                    if (p.alpha <= 0) {
+                        particles.splice(i, 1);
+                    }
+                }
+            }
+        }
+
+        function createPeripheralExplosion(x, y, hue) {
+            let particleCount = floor(random(20, 40));
+            
+            for (let i = 0; i < particleCount; i++) {
+                let angle = random(TWO_PI);
+                let speed = random(0.5, 2);
+                
+                let particle = {
+                    x: x,
+                    y: y,
+                    vx: cos(angle) * speed,
+                    vy: sin(angle) * speed,
+                    hue: hue,
+                    alpha: 255,
+                    size: random(1, 3),
+                    gravity: 0.05,
+                    trail: []
+                };
+                
+                particles.push(particle);
+            }
+        }
+
+        function windowResized() {
+            resizeCanvas(windowWidth, windowHeight);
+        }
+        
+        function mousePressed() {
+            let count = floor(random(3, 6));
+            for (let i = 0; i < count; i++) {
+                let offsetX = random(-50, 50);
+                let firework = {
+                    x: mouseX + offsetX,
+                    y: height,
+                    targetY: random(height * 0.1, height * 0.5),
+                    speedY: random(-11, -15),
+                    hue: random(360),
+                    size: random(3, 5),
+                    explosionSize: random(150, 250)
+                };
+                fireworks.push(firework);
+            }
+            return false;
+        }
+    </script>
+</body>
+</html>
